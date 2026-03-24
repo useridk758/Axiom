@@ -47,67 +47,66 @@ window.addEventListener('resize', resizeCanvas);
 resizeCanvas();
 animateStars();
 
-// 2. Cinematic Fade-In Sequence (FIXED)
-window.addEventListener('load', () => {
-    setTimeout(() => {
-        loader.style.opacity = '0';
-        
-        setTimeout(() => {
-            loader.style.display = 'none';
-            
-            // Reveal header first
-            mainHeader.classList.add('visible-element');
-            
-            // Delay main UI slightly for "layered" effect
-            setTimeout(() => {
-                mainUI.classList.add('visible-element');
-            }, 400);
-        }, 800);
-    }, 2000);
-});
-
-// 3. Navigation
+// 2. Navigation Fix
 function loadUrl(url) {
-    if (!url) return;
-    if (!url.startsWith('http')) url = 'https://' + url;
+    if (!url || url.trim() === "") return;
     
-    // Switch to Black screen loader
+    let targetUrl = url.trim();
+    if (!targetUrl.startsWith('http')) {
+        targetUrl = 'https://' + targetUrl;
+    }
+
     loader.style.display = 'flex';
     loader.style.opacity = '1';
-    
-    setTimeout(() => { 
-        iframe.src = url; 
-    }, 100);
+
+    iframe.src = targetUrl;
 
     iframe.onload = () => {
-        if (iframe.src === 'about:blank') return;
         loader.style.opacity = '0';
         setTimeout(() => {
             loader.style.display = 'none';
+            
+            // HIDE MENU
             mainUI.classList.remove('visible-element');
             mainHeader.classList.remove('visible-element');
-            
-            frameContainer.style.display = 'flex';
             setTimeout(() => {
-                frameContainer.classList.add('visible-element');
-            }, 50);
+                mainUI.style.display = 'none';
+                mainHeader.style.display = 'none';
+                
+                // SHOW BROWSER
+                frameContainer.style.display = 'flex';
+                setTimeout(() => {
+                    frameContainer.classList.add('visible-element');
+                }, 50);
+            }, 600);
         }, 600);
     };
 }
 
+// 3. Button Bindings
 document.getElementById('nav-home').onclick = () => {
     frameContainer.classList.remove('visible-element');
     setTimeout(() => {
         frameContainer.style.display = 'none';
         iframe.src = 'about:blank';
-        mainHeader.classList.add('visible-element');
-        mainUI.classList.add('visible-element');
+        
+        mainHeader.style.display = 'flex';
+        mainUI.style.display = 'flex';
+        setTimeout(() => {
+            mainHeader.classList.add('visible-element');
+            mainUI.classList.add('visible-element');
+        }, 50);
     }, 600);
 };
 
+document.getElementById('main-go-btn').onclick = () => loadUrl(document.getElementById('main-url-input').value);
+document.getElementById('main-url-input').onkeydown = (e) => { if (e.key === 'Enter') loadUrl(e.target.value); };
+document.getElementById('omni-bar').onkeydown = (e) => { if (e.key === 'Enter') loadUrl(e.target.value); };
+document.getElementById('shortcut-music').onclick = () => loadUrl('https://monochrome.tf');
+document.getElementById('shortcut-movies').onclick = () => loadUrl('https://vexo.tv');
 document.getElementById('nav-refresh').onclick = () => { iframe.src = iframe.src; };
 
-// Clock & Handlers
+// 4. Clock & Initialization
 function updateClock() {
     const now = new Date();
     clockEl.innerText = now.toLocaleTimeString('en-US', { hour12: true });
@@ -115,11 +114,20 @@ function updateClock() {
 setInterval(updateClock, 1000);
 updateClock();
 
-document.getElementById('main-go-btn').onclick = () => loadUrl(document.getElementById('main-url-input').value);
-document.getElementById('main-url-input').onkeydown = (e) => { if(e.key === 'Enter') loadUrl(e.target.value); };
-document.getElementById('shortcut-music').onclick = () => loadUrl('https://monochrome.tf');
-document.getElementById('shortcut-movies').onclick = () => loadUrl('https://vexo.tv');
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        loader.style.opacity = '0';
+        setTimeout(() => {
+            loader.style.display = 'none';
+            mainHeader.classList.add('visible-element');
+            setTimeout(() => {
+                mainUI.classList.add('visible-element');
+            }, 400);
+        }, 800);
+    }, 2000);
+});
 
+// Cursor
 document.addEventListener('mousemove', (e) => {
     const cursor = document.getElementById('custom-cursor');
     cursor.style.left = e.clientX + 'px';
@@ -127,5 +135,5 @@ document.addEventListener('mousemove', (e) => {
 });
 
 document.getElementById('about-trigger').onclick = () => {
-    alert("AXIOM WEB\nCreated by: Dunko\nVersion: 1.0.7\nExperience the void.");
+    alert("AXIOM WEB\nCreated by: Dunko\nVersion: 1.0.8\nExperience the void.");
 };
