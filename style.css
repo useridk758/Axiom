@@ -1,0 +1,64 @@
+:root {
+    --bg: #0d1117;
+    --text: #c9d1d9;
+    --accent: #58a6ff;
+    --card-bg: #161b22;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    border-bottom: 1px solid #30363d;
+}
+
+.logo {
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: var(--accent);
+}
+
+.hero {
+    text-align: center;
+    padding: 5rem 2rem;
+}
+
+.search-container {
+    margin: 2rem auto;
+    max-width: 600px;
+    display: flex;
+    gap: 10px;
+}
+
+input {
+    flex: 1;
+    padding: 12px;
+    background: var(--card-bg);
+    border: 1px solid #30363d;
+    color: white;
+    border-radius: 6px;
+}
+
+button {
+    padding: 10px 20px;
+    background: var(--accent);
+    border: none;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    max-width: 1000px;
+    margin: 4rem auto;
+}
