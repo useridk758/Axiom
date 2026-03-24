@@ -2,33 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Axiom | Research & Logic</title>
+    <title>Axiom | Mathematical Principles</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <nav class="navbar">
-        <div class="logo">AXIOM</div>
-        <div class="nav-links">
-            <span>Documentation</span>
-            <span>API</span>
-            <span>Resources</span>
-        </div>
-    </nav>
-
-    <main class="hero">
-        <h1>Centralized Knowledge Base</h1>
-        <p>Access your research modules and data strings below.</p>
-        
-        <div class="search-container">
-            <input type="text" id="omni-bar" placeholder="Enter query or resource ID...">
-            <button id="execute-btn">Execute</button>
-        </div>
-
-        <div class="grid" id="content-grid">
+<body id="main-body">
+    <div id="decoy-view">
+        <nav class="edu-nav">
+            <span>Library</span> <span>Calculators</span> <span>Reference</span>
+        </nav>
+        <div class="edu-content">
+            <h1>Fundamental Axioms of Algebra</h1>
+            <p>The field of mathematics relies on a set of core principles known as axioms. These statements are accepted as true without proof...</p>
+            <div class="math-box">
+                $$a(b + c) = ab + ac$$
+                <p>The Distributive Property is a cornerstone of algebraic manipulation.</p>
             </div>
-    </main>
+            <button id="auth-check" style="opacity: 0.05; cursor: default;">.</button>
+        </div>
+    </div>
 
+    <div id="hub-view" style="display: none;">
+        <h1 class="glow-text">AXIOM CORE</h1>
+        <div class="search-wrap">
+            <input type="text" id="proxy-input" placeholder="Search modules or enter URL...">
+        </div>
+        <div id="content-grid"></div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="disguise.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
