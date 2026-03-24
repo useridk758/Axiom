@@ -2,35 +2,37 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Axiom | Mathematical Principles</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Axiom / World Peace</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body id="main-body">
-    <div id="decoy-view">
-        <nav class="edu-nav">
-            <span>Library</span> <span>Calculators</span> <span>Reference</span>
-        </nav>
-        <div class="edu-content">
-            <h1>Fundamental Axioms of Algebra</h1>
-            <p>The field of mathematics relies on a set of core principles known as axioms. These statements are accepted as true without proof...</p>
-            <div class="math-box">
-                $$a(b + c) = ab + ac$$
-                <p>The Distributive Property is a cornerstone of algebraic manipulation.</p>
-            </div>
-            <button id="auth-check" style="opacity: 0.05; cursor: default;">.</button>
-        </div>
+<body>
+
+    <div id="loader-wrapper">
+        <div class="spinner"></div>
     </div>
 
-    <div id="hub-view" style="display: none;">
-        <h1 class="glow-text">AXIOM CORE</h1>
-        <div class="search-wrap">
-            <input type="text" id="proxy-input" placeholder="Search modules or enter URL...">
+    <main id="main-ui" class="hidden">
+        <h1 class="logo">Axiom</h1>
+        
+        <div class="input-container">
+            <input type="text" id="url-input" placeholder="Enter a URL (e.g., https://bing.com)...">
+            <button id="go-btn">Enter</button>
         </div>
-        <div id="content-grid"></div>
+
+        <div class="shortcuts">
+            <div class="shortcut-square"><span>+</span></div>
+            <div class="shortcut-square"><span>+</span></div>
+            <div class="shortcut-square"><span>+</span></div>
+            <div class="shortcut-square"><span>+</span></div>
+        </div>
+    </main>
+
+    <div id="frame-container" class="hidden">
+        <iframe id="content-frame" src=""></iframe>
     </div>
 
-    <script src="config.js"></script>
-    <script src="disguise.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
