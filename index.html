@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Axiom</title>
+    <title>Axiom / Freedom At Last</title>
     <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -28,10 +28,10 @@
     </header>
 
     <main id="main-ui" class="hidden">
-        <div class="dashboard-wide">
+        <div class="hero-section">
             <h1 class="hero-logo">Axiom</h1>
             
-            <div class="glass-input-wrapper">
+            <div class="floating-search">
                 <input type="text" id="main-url-input" placeholder="Search the void...">
                 <button id="main-go-btn">Enter</button>
             </div>
@@ -46,8 +46,13 @@
                     <div class="label">Movies</div>
                 </div>
                 <div class="glass-shortcut placeholder"><span>+</span></div>
-                <div class="glass-shortcut placeholder"><span>+</span></div>
             </div>
+        </div>
+
+        <div class="bottom-dock">
+            <button class="dock-btn" onclick="alert('Settings coming soon...')">Settings</button>
+            <button class="dock-btn" onclick="alert('Games coming soon...')">Games</button>
+            <button class="dock-btn" onclick="showAbout()">About Us</button>
         </div>
     </main>
 
@@ -61,7 +66,9 @@
                 <input type="text" id="omni-bar" placeholder="Navigate...">
             </div>
         </nav>
-        <iframe id="content-frame" src=""></iframe>
+        <div class="iframe-wrapper">
+            <iframe id="content-frame" src=""></iframe>
+        </div>
     </div>
 
     <script src="script.js"></script>
