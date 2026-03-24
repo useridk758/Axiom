@@ -1,23 +1,34 @@
-const resources = [
-    { name: "Module_01", type: "Logic", url: "#" },
-    { name: "Module_02", type: "Physics", url: "#" },
-    { name: "Module_03", type: "Calculus", url: "#" }
-];
-
+const decoy = document.getElementById('decoy-view');
+const hub = document.getElementById('hub-view');
 const grid = document.getElementById('content-grid');
 
-resources.forEach(item => {
-    const card = document.createElement('div');
-    card.style.padding = '20px';
-    card.style.background = '#161b22';
-    card.style.border = '1px solid #30363d';
-    card.style.borderRadius = '8px';
-    card.innerHTML = `
-        <h3>${item.name}</h3>
-        <p style="font-size: 0.8rem; opacity: 0.7;">Type: ${item.type}</p>
-    `;
-    card.onclick = () => window.location.href = item.url;
-    grid.appendChild(card);
+// METHOD 1: The "Right-Shift + L" Combo
+document.addEventListener('keydown', (e) => {
+    if (e.shiftKey && e.key.toLowerCase() === 'l') {
+        unlockAxiom();
+    }
 });
 
-console.log("Axiom System Initialized.");
+// METHOD 2: The Stealth Button (That tiny dot at the bottom)
+document.getElementById('auth-check').onclick = () => unlockAxiom();
+
+function unlockAxiom() {
+    decoy.style.display = 'none';
+    hub.style.display = 'block';
+    document.title = "Axiom | Dashboard";
+    loadModules();
+}
+
+function loadModules() {
+    grid.innerHTML = ''; // Clear it first
+    AXIOM_CONFIG.modules.forEach(item => {
+        const card = document.createElement('div');
+        card.className = "app-card";
+        card.innerHTML = `
+            <div class="card-icon">${item.title[0]}</div>
+            <h3>${item.title}</h3>
+        `;
+        card.onclick = () => window.location.href = item.url;
+        grid.appendChild(card);
+    });
+}
