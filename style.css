@@ -34,7 +34,7 @@ body, html {
     100% { transform: rotate(360deg); }
 }
 
-/* Logo & Input */
+/* Logo */
 .logo {
     font-family: 'Lobster', cursive;
     font-size: 3rem;
@@ -42,6 +42,7 @@ body, html {
     text-align: center;
 }
 
+/* Main UI (Grid) */
 #main-ui {
     display: flex;
     flex-direction: column;
@@ -51,63 +52,93 @@ body, html {
     transition: opacity 1s ease;
 }
 
-.input-container {
-    display: flex;
-    gap: 10px;
-    width: 90%;
-    max-width: 500px;
-}
-
-input {
-    flex: 1;
-    padding: 15px;
-    border-radius: 8px;
-    border: 1px solid #333;
-    background: #1a1a1a;
-    color: white;
-}
-
-button {
-    padding: 0 20px;
-    border-radius: 8px;
-    border: none;
-    background: white;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-/* Shortcuts */
 .shortcuts {
     display: flex;
-    gap: 20px;
+    gap: 30px;
     margin-top: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .shortcut-square {
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
     background: #1a1a1a;
     border-radius: 12px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     cursor: pointer;
     border: 1px solid #333;
     transition: 0.3s;
+    position: relative;
+    overflow: hidden;
 }
 
-.shortcut-square:hover { background: #252525; }
+.shortcut-square img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
-/* Iframe View */
+.shortcut-square span {
+    font-size: 0.75rem;
+    position: absolute;
+    bottom: -22px;
+    color: #888;
+}
+
+.shortcut-square:hover { border-color: #555; }
+.shortcut-square.placeholder { color: #555; font-size: 1.5rem; }
+
+/* Content Viewer (Iframe + Nav) */
 #frame-container {
     position: fixed;
     inset: 0;
     z-index: 500;
+    display: flex;
+    flex-direction: column;
+}
+
+.frame-nav {
+    display: flex;
+    align-items: center;
+    background: #161616;
+    padding: 10px 20px;
+    border-bottom: 1px solid #333;
+    gap: 15px;
+}
+
+.nav-controls button {
+    background: #252525;
+    color: white;
+    border: 1px solid #333;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.nav-controls button:hover { background: #333; }
+
+.omnibar-wrap {
+    flex: 1;
+}
+
+#omni-bar {
+    width: 100%;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid #333;
+    background: #0f0f0f;
+    color: white;
+    box-sizing: border-box;
 }
 
 iframe {
     width: 100%;
-    height: 100%;
+    flex: 1;
     border: none;
 }
 
