@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Axiom / World Peace</title>
+    <title>Axiom</title>
     <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -16,20 +16,33 @@
     <main id="main-ui" class="hidden">
         <h1 class="logo">Axiom</h1>
         
-        <div class="input-container">
-            <input type="text" id="url-input" placeholder="Enter a URL (e.g., https://bing.com)...">
-            <button id="go-btn">Enter</button>
-        </div>
-
         <div class="shortcuts">
-            <div class="shortcut-square"><span>+</span></div>
-            <div class="shortcut-square"><span>+</span></div>
-            <div class="shortcut-square"><span>+</span></div>
-            <div class="shortcut-square"><span>+</span></div>
+            <div class="shortcut-square" id="shortcut-roblox">
+                <img src="https://i.pinimg.com/originals/3f/d5/b4/3fd5b4b8fb2c3b6a8473d72887d37ea9.jpg" alt="Roblox">
+                <span>Roblox</span>
+            </div>
+            
+            <div class="shortcut-square" id="shortcut-music">
+                <img src="https://i.ibb.co/Xz95mB4/music-symbol.png" alt="Music"> <span>Music</span>
+            </div>
+
+            <div class="shortcut-square placeholder"><span>+</span></div>
+            <div class="shortcut-square placeholder"><span>+</span></div>
         </div>
     </main>
 
     <div id="frame-container" class="hidden">
+        
+        <nav class="frame-nav">
+            <div class="nav-controls">
+                <button id="nav-home">Home</button>
+                <button id="nav-refresh">Refresh</button>
+            </div>
+            <div class="omnibar-wrap">
+                <input type="text" id="omni-bar" placeholder="Enter URL...">
+            </div>
+        </nav>
+
         <iframe id="content-frame" src=""></iframe>
     </div>
 
