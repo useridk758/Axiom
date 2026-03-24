@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Axiom / Freedom At Last</title>
+    <title>Axiom</title>
     <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div id="custom-cursor"></div>
-    <canvas id="particle-canvas"></canvas>
+    <canvas id="star-canvas"></canvas>
 
     <div id="loader-wrapper">
         <div class="spinner"></div>
@@ -31,9 +31,9 @@
         <div class="hero-section">
             <h1 class="hero-logo">Axiom</h1>
             
-            <div class="floating-search">
+            <div class="premium-search">
                 <input type="text" id="main-url-input" placeholder="Search the void...">
-                <button id="main-go-btn">Enter</button>
+                <button id="main-go-btn">Explore</button>
             </div>
 
             <div class="shortcut-row">
@@ -51,8 +51,10 @@
 
         <div class="bottom-dock">
             <button class="dock-btn" onclick="alert('Settings coming soon...')">Settings</button>
+            <div class="dock-divider"></div>
             <button class="dock-btn" onclick="alert('Games coming soon...')">Games</button>
-            <button class="dock-btn" onclick="showAbout()">About Us</button>
+            <div class="dock-divider"></div>
+            <button class="dock-btn" id="about-trigger">About Us</button>
         </div>
     </main>
 
@@ -71,6 +73,6 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="index.js"></script>
 </body>
 </html>
