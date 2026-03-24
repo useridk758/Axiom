@@ -1,34 +1,46 @@
-const decoy = document.getElementById('decoy-view');
-const hub = document.getElementById('hub-view');
-const grid = document.getElementById('content-grid');
+const loader = document.getElementById('loader-wrapper');
+const mainUI = document.getElementById('main-ui');
+const frameContainer = document.getElementById('frame-container');
+const iframe = document.getElementById('content-frame');
+const urlInput = document.getElementById('url-input');
+const goBtn = document.getElementById('go-btn');
 
-// METHOD 1: The "Right-Shift + L" Combo
-document.addEventListener('keydown', (e) => {
-    if (e.shiftKey && e.key.toLowerCase() === 'l') {
-        unlockAxiom();
-    }
+// 1. Initial Load Sequence
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        loader.style.opacity = '0'; // Fade out spinner
+        setTimeout(() => {
+            loader.style.display = 'none';
+            mainUI.classList.remove('hidden'); // Fade in Axiom UI
+            mainUI.style.opacity = '1';
+        }, 1000);
+    }, 2000); // Spinner shows for 2 seconds
 });
 
-// METHOD 2: The Stealth Button (That tiny dot at the bottom)
-document.getElementById('auth-check').onclick = () => unlockAxiom();
+// 2. Loading a Website
+function loadUrl() {
+    let url = urlInput.value;
+    if (!url.startsWith('http')) url = 'https://' + url;
 
-function unlockAxiom() {
-    decoy.style.display = 'none';
-    hub.style.display = 'block';
-    document.title = "Axiom | Dashboard";
-    loadModules();
+    // Show loader again
+    loader.style.display = 'flex';
+    loader.style.opacity = '1';
+    
+    iframe.src = url;
+
+    // Once iframe is loaded, hide loader
+    iframe.onload = () => {
+        loader.style.opacity = '0';
+        setTimeout(() => {
+            loader.style.display = 'none';
+            mainUI.classList.add('hidden'); // Hide the search UI
+            frameContainer.classList.remove('hidden'); // Show the site
+            frameContainer.style.opacity = '1';
+        }, 1000);
+    };
 }
 
-function loadModules() {
-    grid.innerHTML = ''; // Clear it first
-    AXIOM_CONFIG.modules.forEach(item => {
-        const card = document.createElement('div');
-        card.className = "app-card";
-        card.innerHTML = `
-            <div class="card-icon">${item.title[0]}</div>
-            <h3>${item.title}</h3>
-        `;
-        card.onclick = () => window.location.href = item.url;
-        grid.appendChild(card);
-    });
-}
+goBtn.onclick = loadUrl;
+urlInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') loadUrl();
+});
