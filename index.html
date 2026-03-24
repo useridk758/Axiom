@@ -16,10 +16,12 @@
         <div class="spinner"></div>
     </div>
 
-    <header id="main-header" class="glass-header hidden">
+    <header id="main-header" class="glass-header hidden-element">
         <div class="header-left">
-            <div class="header-logo-badge">A</div>
-            <span class="header-logo-text">AXIOM</span>
+            <div class="advanced-logo">
+                <div class="logo-inner"></div>
+                <span>AXIOM</span>
+            </div>
         </div>
         <div class="header-right">
             <span id="live-temp">68°F · Los Angeles</span>
@@ -27,7 +29,7 @@
         </div>
     </header>
 
-    <main id="main-ui" class="hidden">
+    <main id="main-ui" class="hidden-element">
         <div class="hero-section">
             <h1 class="hero-logo">Axiom</h1>
             
@@ -50,22 +52,26 @@
         </div>
 
         <div class="bottom-dock">
-            <button class="dock-btn" onclick="alert('Settings coming soon...')">Settings</button>
+            <button class="dock-btn">Settings</button>
             <div class="dock-divider"></div>
-            <button class="dock-btn" onclick="alert('Games coming soon...')">Games</button>
+            <button class="dock-btn">Games</button>
             <div class="dock-divider"></div>
             <button class="dock-btn" id="about-trigger">About Us</button>
         </div>
     </main>
 
-    <div id="frame-container" class="hidden">
-        <nav class="browser-nav">
-            <div class="nav-group">
-                <button id="nav-home">Home</button>
-                <button id="nav-refresh">↻</button>
-            </div>
-            <div class="omni-wrap">
-                <input type="text" id="omni-bar" placeholder="Navigate...">
+    <div id="frame-container" class="hidden-element">
+        <nav class="advanced-browser-nav">
+            <div class="nav-blur-bg"></div>
+            <div class="nav-content">
+                <div class="nav-group">
+                    <button id="nav-home" title="Home">Home</button>
+                    <button id="nav-refresh" title="Refresh">↻</button>
+                </div>
+                <div class="omni-wrap">
+                    <div class="omni-icon">🔒</div>
+                    <input type="text" id="omni-bar" placeholder="Navigate the web...">
+                </div>
             </div>
         </nav>
         <div class="iframe-wrapper">
