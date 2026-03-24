@@ -5,54 +5,78 @@ const frameContainer = document.getElementById('frame-container');
 const iframe = document.getElementById('content-frame');
 const clockEl = document.getElementById('live-clock');
 
-// 1. Star Animation Logic
+// 1. Re-Engineered Stars (Guaranteed Visibility)
 const canvas = document.getElementById('star-canvas');
 const ctx = canvas.getContext('2d');
 let stars = [];
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    initStars();
+}
 
 function initStars() {
     stars = [];
-    for (let i = 0; i < 200; i++) {
+    const count = Math.floor((canvas.width * canvas.height) / 4000);
+    for (let i = 0; i < count; i++) {
         stars.push({
             x: Math.random() * canvas.width,
             y: Math.random() * canvas.height,
-            size: Math.random() * 1.2,
+            size: Math.random() * 1.5 + 0.5,
             opacity: Math.random(),
-            speed: Math.random() * 0.02
+            speed: Math.random() * 0.01 + 0.005
         });
     }
 }
 
-function drawStars() {
+function animateStars() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     stars.forEach(s => {
         s.opacity += s.speed;
-        if (s.opacity > 1 || s.opacity < 0) s.speed *= -1;
+        if (s.opacity > 1 || s.opacity < 0.1) s.speed *= -1;
         ctx.fillStyle = `rgba(255, 255, 255, ${s.opacity})`;
         ctx.beginPath();
         ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
         ctx.fill();
     });
-    requestAnimationFrame(drawStars);
+    requestAnimationFrame(animateStars);
 }
-initStars(); drawStars();
 
-// 2. Clock & UI Logic
-function updateClock() {
-    const now = new Date();
-    clockEl.innerText = now.toLocaleTimeString('en-US', { hour12: true });
-}
-setInterval(updateClock, 1000);
-updateClock();
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+animateStars();
 
+// 2. Cinematic Fade-In Sequence
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        // Fade out loader
+        loader.style.opacity = '0';
+        
+        setTimeout(() => {
+            loader.style.display = 'none';
+            
+            // Smoothly reveal UI elements one by one
+            mainHeader.classList.remove('hidden-element');
+            mainHeader.classList.add('visible-element');
+            
+            setTimeout(() => {
+                mainUI.classList.remove('hidden-element');
+                mainUI.classList.add('visible-element');
+            }, 300);
+        }, 1000);
+    }, 2000);
+});
+
+// 3. Navigation Functions
 function loadUrl(url) {
     if (!url) return;
     if (!url.startsWith('http')) url = 'https://' + url;
+    
     iframe.src = 'about:blank';
     loader.style.display = 'flex';
     loader.style.opacity = '1';
+
     setTimeout(() => { iframe.src = url; }, 100);
 
     iframe.onload = () => {
@@ -60,32 +84,42 @@ function loadUrl(url) {
         loader.style.opacity = '0';
         setTimeout(() => {
             loader.style.display = 'none';
-            mainUI.classList.add('hidden');
-            mainHeader.classList.add('hidden');
-            frameContainer.classList.remove('hidden');
-        }, 600);
+            mainUI.classList.add('hidden-element');
+            mainHeader.classList.add('hidden-element');
+            frameContainer.classList.remove('hidden-element');
+            frameContainer.classList.add('visible-element');
+        }, 800);
     };
 }
 
-// 3. Button Bindings
 document.getElementById('nav-home').onclick = () => {
     iframe.src = 'about:blank';
-    frameContainer.classList.add('hidden');
-    mainUI.classList.remove('hidden');
-    mainHeader.classList.remove('hidden');
+    frameContainer.classList.remove('visible-element');
+    frameContainer.classList.add('hidden-element');
+    
+    setTimeout(() => {
+        mainUI.classList.remove('hidden-element');
+        mainUI.classList.add('visible-element');
+        mainHeader.classList.remove('hidden-element');
+        mainHeader.classList.add('visible-element');
+    }, 500);
 };
 
 document.getElementById('nav-refresh').onclick = () => { iframe.src = iframe.src; };
 
-document.getElementById('about-trigger').onclick = () => {
-    alert("AXIOM WEB\nCreated by: Dunko\nVersion: 1.0.5\nStay Smooth.");
-};
-
-document.getElementById('shortcut-music').onclick = () => loadUrl('https://monochrome.tf');
-document.getElementById('shortcut-movies').onclick = () => loadUrl('https://vexo.tv');
+// Clock & Input Handlers
+function updateClock() {
+    const now = new Date();
+    clockEl.innerText = now.toLocaleTimeString('en-US', { hour12: true });
+}
+setInterval(updateClock, 1000);
+updateClock();
 
 document.getElementById('main-go-btn').onclick = () => loadUrl(document.getElementById('main-url-input').value);
 document.getElementById('main-url-input').onkeydown = (e) => { if(e.key === 'Enter') loadUrl(e.target.value); };
+document.getElementById('omni-bar').onkeydown = (e) => { if(e.key === 'Enter') loadUrl(e.target.value); };
+document.getElementById('shortcut-music').onclick = () => loadUrl('https://monochrome.tf');
+document.getElementById('shortcut-movies').onclick = () => loadUrl('https://vexo.tv');
 
 // Cursor
 document.addEventListener('mousemove', (e) => {
@@ -94,14 +128,6 @@ document.addEventListener('mousemove', (e) => {
     cursor.style.top = e.clientY + 'px';
 });
 
-// Start-up sequence
-window.addEventListener('load', () => {
-    setTimeout(() => {
-        loader.style.opacity = '0';
-        setTimeout(() => {
-            loader.style.display = 'none';
-            mainUI.classList.remove('hidden');
-            mainHeader.classList.remove('hidden');
-        }, 600);
-    }, 2000);
-});
+document.getElementById('about-trigger').onclick = () => {
+    alert("AXIOM WEB\nCreated by: Dunko\nVersion: 1.0.6\nExperience the void.");
+};
