@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Axiom / Freedom at Last</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+    <title>Axiom</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -28,37 +28,37 @@
     </header>
 
     <main id="main-ui" class="hidden">
-        <div class="dashboard-container">
+        <div class="dashboard-wide">
             <h1 class="hero-logo">Axiom</h1>
             
-            <div class="glass-search">
-                <input type="text" id="main-url-input" placeholder="Search the web or enter a URL...">
-                <button id="main-go-btn">Go</button>
+            <div class="glass-input-wrapper">
+                <input type="text" id="main-url-input" placeholder="Search the void...">
+                <button id="main-go-btn">Enter</button>
             </div>
 
-            <div class="shortcut-grid">
-                <div class="shortcut-box" id="shortcut-music">
+            <div class="shortcut-row">
+                <div class="glass-shortcut" id="shortcut-music">
                     <img src="https://i.ibb.co/Xz95mB4/music-symbol.png" alt="Music">
-                    <div class="shortcut-label">Music</div>
+                    <div class="label">Music</div>
                 </div>
-                <div class="shortcut-box" id="shortcut-movies">
+                <div class="glass-shortcut" id="shortcut-movies">
                     <div class="empty-photo"></div>
-                    <div class="shortcut-label">Movies</div>
+                    <div class="label">Movies</div>
                 </div>
-                <div class="shortcut-box placeholder"><span>+</span></div>
-                <div class="shortcut-box placeholder"><span>+</span></div>
+                <div class="glass-shortcut placeholder"><span>+</span></div>
+                <div class="glass-shortcut placeholder"><span>+</span></div>
             </div>
         </div>
     </main>
 
     <div id="frame-container" class="hidden">
-        <nav class="browser-nav glass-nav">
-            <div class="nav-btns">
+        <nav class="browser-nav">
+            <div class="nav-group">
                 <button id="nav-home">Home</button>
                 <button id="nav-refresh">↻</button>
             </div>
-            <div class="address-bar-wrap">
-                <input type="text" id="omni-bar" placeholder="Enter URL...">
+            <div class="omni-wrap">
+                <input type="text" id="omni-bar" placeholder="Navigate...">
             </div>
         </nav>
         <iframe id="content-frame" src=""></iframe>
