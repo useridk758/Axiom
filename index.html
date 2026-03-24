@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Axiom</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -12,13 +12,24 @@
     <div id="custom-cursor"></div>
     <canvas id="particle-canvas"></canvas>
 
+    <header id="main-header" class="glass-nav-top">
+        <div class="header-logo">
+            <span class="logo-icon">A</span>
+            <span class="logo-text">AXIOM</span>
+        </div>
+        <div class="header-info">
+            <span id="live-temp">72°F · Los Angeles</span>
+            <span id="live-clock">12:00:00 PM</span>
+        </div>
+    </header>
+
     <div id="loader-wrapper">
         <div class="spinner"></div>
     </div>
 
     <main id="main-ui" class="hidden">
         <div class="glass-card">
-            <h1 class="logo">Axiom</h1>
+            <h1 class="logo-main">Axiom</h1>
             
             <div class="search-container">
                 <input type="text" id="main-url-input" placeholder="Explore the web...">
@@ -37,7 +48,7 @@
     </main>
 
     <div id="frame-container" class="hidden">
-        <nav class="frame-nav glass-nav">
+        <nav class="frame-nav glass-nav-browse">
             <div class="nav-controls">
                 <button id="nav-home">Home</button>
                 <button id="nav-refresh">↻</button>
