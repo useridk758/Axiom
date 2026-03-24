@@ -17,29 +17,30 @@
     </div>
 
     <main id="main-ui" class="hidden">
-        <h1 class="logo">Axiom</h1>
-        
-        <div class="search-container">
-            <input type="text" id="main-url-input" placeholder="Enter a URL to explore...">
-            <button id="main-go-btn">Enter</button>
-        </div>
-
-        <div class="shortcuts">
-            <div class="shortcut-square" id="shortcut-music">
-                <img src="https://i.ibb.co/Xz95mB4/music-symbol.png" alt="Music">
-                <div class="label">Music</div>
+        <div class="glass-card">
+            <h1 class="logo">Axiom</h1>
+            
+            <div class="search-container">
+                <input type="text" id="main-url-input" placeholder="Explore the web...">
+                <button id="main-go-btn">Go</button>
             </div>
 
-            <div class="shortcut-square placeholder"><span>+</span></div>
-            <div class="shortcut-square placeholder"><span>+</span></div>
+            <div class="shortcuts">
+                <div class="shortcut-square" id="shortcut-music">
+                    <img src="https://i.ibb.co/Xz95mB4/music-symbol.png" alt="Music">
+                    <div class="label">Music</div>
+                </div>
+                <div class="shortcut-square placeholder"><span>+</span></div>
+                <div class="shortcut-square placeholder"><span>+</span></div>
+            </div>
         </div>
     </main>
 
     <div id="frame-container" class="hidden">
-        <nav class="frame-nav">
+        <nav class="frame-nav glass-nav">
             <div class="nav-controls">
                 <button id="nav-home">Home</button>
-                <button id="nav-refresh">Refresh</button>
+                <button id="nav-refresh">↻</button>
             </div>
             <div class="omnibar-wrap">
                 <input type="text" id="omni-bar" placeholder="Enter URL...">
