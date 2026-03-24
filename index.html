@@ -3,19 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <title>Axiom | By Dunko</title>
-
-    <meta name="description" content="Axiom is a high-performance, ultra-smooth web dashboard featuring glassmorphism design. Explore the void with custom shortcuts and seamless navigation, created by Dunko.">
-    <meta name="keywords" content="Axiom, Dunko, Axiom Web, Glassmorphism, Smooth UI, Web Dashboard">
-    <meta name="author" content="Dunko">
-    
-    <meta name="google-site-verification" content="YOUR_CODE_HERE" />
-
-    <meta property="og:title" content="Axiom | By Dunko">
-    <meta property="og:description" content="The ultimate smooth web experience. Designed by Dunko.">
-    <meta property="og:type" content="website">
-
     <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -28,7 +16,7 @@
         <div class="spinner"></div>
     </div>
 
-    <header id="main-header" class="glass-header hidden-element">
+    <header id="main-header" class="glass-header" style="opacity: 0; display: none;">
         <div class="header-left">
             <div class="advanced-logo">
                 <div class="logo-inner"></div>
@@ -36,20 +24,17 @@
             </div>
         </div>
         <div class="header-right">
-            <span id="live-temp">68°F · Los Angeles</span>
             <span id="live-clock">--:--:-- --</span>
         </div>
     </header>
 
-    <main id="main-ui" class="hidden-element">
+    <main id="main-ui" style="opacity: 0; display: none;">
         <div class="hero-section">
             <h1 class="hero-logo">Axiom</h1>
-            
             <div class="premium-search">
                 <input type="text" id="main-url-input" placeholder="Search the void...">
                 <button id="main-go-btn">Explore</button>
             </div>
-
             <div class="shortcut-row">
                 <div class="glass-shortcut" id="shortcut-music">
                     <img src="https://i.ibb.co/Xz95mB4/music-symbol.png" alt="Music">
@@ -64,15 +49,21 @@
         </div>
 
         <div class="bottom-dock">
-            <button class="dock-btn">Settings</button>
+            <button class="dock-btn" id="history-trigger">History</button>
             <div class="dock-divider"></div>
             <button class="dock-btn">Games</button>
             <div class="dock-divider"></div>
             <button class="dock-btn" id="about-trigger">About Us</button>
         </div>
+
+        <div id="history-panel" class="hidden-panel">
+            <h3>Recent Journeys</h3>
+            <div id="history-list"></div>
+            <button id="clear-history">Clear All</button>
+        </div>
     </main>
 
-    <div id="frame-container" class="hidden-element" style="display: none; background: #000;">
+    <div id="frame-container" style="display: none; opacity: 0;">
         <nav class="advanced-browser-nav">
             <div class="nav-blur-bg"></div>
             <div class="nav-content">
@@ -81,13 +72,12 @@
                     <button id="nav-refresh">↻</button>
                 </div>
                 <div class="omni-wrap">
-                    <div class="omni-icon">🔒</div>
                     <input type="text" id="omni-bar" placeholder="Navigate the web...">
                 </div>
             </div>
         </nav>
-        <div class="iframe-wrapper" style="background: #000;">
-            <iframe id="content-frame" src="about:blank" style="background: #000;"></iframe>
+        <div class="iframe-wrapper">
+            <iframe id="content-frame" src="about:blank"></iframe>
         </div>
     </div>
 
