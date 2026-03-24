@@ -1,0 +1,12 @@
+{
+  "name": "axiom-core",
+  "version": "1.0.0",
+  "description": "A high-performance utility for browser-based data visualization and math logic.",
+  "main": "script.js",
+  "scripts": {
+    "start": "echo 'Running Axiom...'",
+    "build": "echo 'Optimizing assets...'"
+  },
+  "author": "Axiom Dev",
+  "license": "MIT"
+}
