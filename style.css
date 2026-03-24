@@ -1,5 +1,5 @@
 body, html {
-    margin: 0; padding: 0; height: 100%;
+    margin: 0; padding: 0; width: 100%; height: 100%;
     background: #000; color: white;
     font-family: 'Inter', sans-serif;
     overflow: hidden; cursor: none;
@@ -13,7 +13,7 @@ body, html {
 
 #particle-canvas { position: fixed; inset: 0; z-index: 0; opacity: 0.3; }
 
-/* Spinner sequence */
+/* Loader */
 #loader-wrapper {
     position: fixed; inset: 0; display: flex; justify-content: center; align-items: center;
     background: #000; z-index: 9999; transition: opacity 0.6s ease;
@@ -36,56 +36,65 @@ body, html {
 .header-logo-badge { background: #fff; color: #000; font-weight: 900; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; }
 .header-logo-text { letter-spacing: 4px; font-weight: 600; font-size: 0.8rem; margin-left: 10px; }
 
-/* Dashboard UI */
+/* Main Floating UI (No Box) */
 #main-ui {
-    display: flex; justify-content: center; align-items: center;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
     height: 100vh; position: relative; z-index: 10;
 }
-.dashboard-wide {
-    width: 85%; max-width: 1000px;
-    background: rgba(255, 255, 255, 0.02);
-    backdrop-filter: blur(40px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 40px; padding: 60px 20px; text-align: center;
-}
+.hero-section { text-align: center; margin-top: -50px; }
 .hero-logo {
-    font-family: 'Lobster', cursive; font-size: 6rem;
-    margin-bottom: 30px; letter-spacing: -1px;
+    font-family: 'Lobster', cursive; font-size: 5rem;
+    margin-bottom: 20px; letter-spacing: -1px;
 }
-.glass-input-wrapper {
-    display: flex; max-width: 600px; margin: 0 auto 50px;
-    background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 18px; padding: 6px;
+.floating-search {
+    display: flex; width: 450px; margin: 0 auto 40px;
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 50px; padding: 5px; backdrop-filter: blur(10px);
 }
-.glass-input-wrapper input {
+.floating-search input {
     flex: 1; background: transparent; border: none; color: #fff;
-    padding: 15px 20px; outline: none; font-size: 1rem;
+    padding: 12px 25px; outline: none; font-size: 0.9rem;
 }
-.glass-input-wrapper button {
+.floating-search button {
     background: #fff; color: #000; border: none;
-    padding: 0 30px; border-radius: 14px; font-weight: 700;
+    padding: 0 25px; border-radius: 50px; font-weight: 700;
 }
 
 /* Shortcuts */
-.shortcut-row { display: flex; gap: 20px; justify-content: center; }
+.shortcut-row { display: flex; gap: 15px; justify-content: center; }
 .glass-shortcut {
-    width: 100px; height: 100px; background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.05); border-radius: 20px;
-    position: relative; overflow: hidden; transition: 0.4s;
+    width: 85px; height: 85px; background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08); border-radius: 18px;
+    position: relative; overflow: hidden; transition: 0.3s ease;
 }
-.glass-shortcut:hover { transform: translateY(-8px); border-color: #fff; background: rgba(255,255,255,0.06); }
-.glass-shortcut img { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; }
-.empty-photo { width: 100%; height: 100%; background: #151515; }
-.label { position: absolute; bottom: 0; width: 100%; background: rgba(0,0,0,0.4); font-size: 0.7rem; padding: 6px 0; }
+.glass-shortcut:hover { transform: translateY(-5px); border-color: #fff; }
+.glass-shortcut img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
+.empty-photo { width: 100%; height: 100%; background: #1a1a1a; }
+.label { position: absolute; bottom: 0; width: 100%; background: rgba(0,0,0,0.5); font-size: 0.65rem; padding: 5px 0; }
 
-/* Browser Nav */
+/* Bottom Dock */
+.bottom-dock {
+    position: absolute; bottom: 40px; display: flex; gap: 15px;
+    background: rgba(255,255,255,0.03); padding: 10px 20px;
+    border-radius: 50px; border: 1px solid rgba(255,255,255,0.05);
+}
+.dock-btn {
+    background: transparent; border: none; color: #888;
+    font-size: 0.8rem; font-weight: 500; padding: 5px 15px; transition: 0.2s;
+}
+.dock-btn:hover { color: #fff; }
+
+/* Browser Full Screen Fix */
+#frame-container { position: fixed; inset: 0; width: 100%; height: 100%; display: flex; flex-direction: column; z-index: 500; background: #000; }
 .browser-nav {
-    display: flex; align-items: center; gap: 20px;
-    padding: 10px 25px; background: #080808; border-bottom: 1px solid #1a1a1a;
+    width: 100%; display: flex; align-items: center; gap: 20px;
+    padding: 10px 25px; background: #0a0a0a; border-bottom: 1px solid #1a1a1a; box-sizing: border-box;
 }
-#nav-home, #nav-refresh { background: #111; border: 1px solid #222; color: #fff; padding: 8px 16px; border-radius: 8px; }
+.nav-group button { background: #1a1a1a; border: none; color: #fff; padding: 8px 15px; border-radius: 6px; }
 .omni-wrap { flex: 1; }
-#omni-bar { width: 100%; background: #000; border: 1px solid #222; color: #fff; padding: 10px; border-radius: 8px; }
+#omni-bar { width: 100%; background: #000; border: 1px solid #222; color: #fff; padding: 10px; border-radius: 6px; }
 
-iframe { flex: 1; border: none; background: #fff; }
-.hidden { display: none !important; opacity: 0; }
+.iframe-wrapper { flex: 1; width: 100%; height: 100%; position: relative; }
+iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; background: #fff; }
+
+.hidden { display: none !important; }
