@@ -11,7 +11,7 @@ body, html {
     mix-blend-mode: difference; box-shadow: 0 0 20px #fff;
 }
 
-#particle-canvas { position: fixed; inset: 0; z-index: 0; opacity: 0.3; }
+#star-canvas { position: fixed; inset: 0; z-index: 0; }
 
 /* Loader */
 #loader-wrapper {
@@ -25,76 +25,79 @@ body, html {
 }
 @keyframes spin { 100% { transform: rotate(360deg); } }
 
-/* Header Bar */
+/* Header */
 .glass-header {
     position: fixed; top: 0; width: 100%; height: 55px;
-    background: rgba(10, 10, 10, 0.4); backdrop-filter: blur(20px);
+    background: rgba(15, 15, 15, 0.4); backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(255,255,255,0.05);
     display: flex; justify-content: space-between; align-items: center;
     padding: 0 40px; z-index: 100; box-sizing: border-box;
 }
-.header-logo-badge { background: #fff; color: #000; font-weight: 900; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; }
+.header-logo-badge { background: #fff; color: #000; font-weight: 900; padding: 2px 8px; border-radius: 4px; }
 .header-logo-text { letter-spacing: 4px; font-weight: 600; font-size: 0.8rem; margin-left: 10px; }
 
-/* Main Floating UI (No Box) */
+/* Main Floating UI */
 #main-ui {
     display: flex; flex-direction: column; justify-content: center; align-items: center;
     height: 100vh; position: relative; z-index: 10;
 }
-.hero-section { text-align: center; margin-top: -50px; }
+.hero-section { text-align: center; margin-top: -80px; }
 .hero-logo {
-    font-family: 'Lobster', cursive; font-size: 5rem;
-    margin-bottom: 20px; letter-spacing: -1px;
+    font-family: 'Lobster', cursive; font-size: 4.5rem;
+    margin-bottom: 25px;
 }
-.floating-search {
-    display: flex; width: 450px; margin: 0 auto 40px;
-    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 50px; padding: 5px; backdrop-filter: blur(10px);
+
+/* Premium Search Bar */
+.premium-search {
+    display: flex; width: 500px; margin: 0 auto 40px;
+    background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px; padding: 4px; backdrop-filter: blur(10px);
+    transition: 0.3s;
 }
-.floating-search input {
+.premium-search:focus-within {
+    border-color: rgba(255,255,255,0.4);
+    box-shadow: 0 0 20px rgba(255,255,255,0.1);
+}
+.premium-search input {
     flex: 1; background: transparent; border: none; color: #fff;
-    padding: 12px 25px; outline: none; font-size: 0.9rem;
+    padding: 12px 20px; outline: none; font-size: 0.95rem;
 }
-.floating-search button {
-    background: #fff; color: #000; border: none;
-    padding: 0 25px; border-radius: 50px; font-weight: 700;
+.premium-search button {
+    background: rgba(255,255,255,0.9); color: #000; border: none;
+    padding: 0 20px; border-radius: 8px; font-weight: 700; cursor: none;
 }
 
 /* Shortcuts */
 .shortcut-row { display: flex; gap: 15px; justify-content: center; }
 .glass-shortcut {
-    width: 85px; height: 85px; background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.08); border-radius: 18px;
-    position: relative; overflow: hidden; transition: 0.3s ease;
+    width: 80px; height: 80px; background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08); border-radius: 15px;
+    position: relative; overflow: hidden; transition: 0.3s;
 }
 .glass-shortcut:hover { transform: translateY(-5px); border-color: #fff; }
-.glass-shortcut img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
-.empty-photo { width: 100%; height: 100%; background: #1a1a1a; }
-.label { position: absolute; bottom: 0; width: 100%; background: rgba(0,0,0,0.5); font-size: 0.65rem; padding: 5px 0; }
+.glass-shortcut img { width: 100%; height: 100%; object-fit: cover; }
+.label { position: absolute; bottom: 0; width: 100%; background: rgba(0,0,0,0.6); font-size: 0.6rem; padding: 4px 0; }
 
-/* Bottom Dock */
+/* Bottom Dock (Always Center) */
 .bottom-dock {
-    position: absolute; bottom: 40px; display: flex; gap: 15px;
-    background: rgba(255,255,255,0.03); padding: 10px 20px;
-    border-radius: 50px; border: 1px solid rgba(255,255,255,0.05);
+    position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
+    display: flex; align-items: center; gap: 10px;
+    background: rgba(255,255,255,0.03); padding: 8px 15px;
+    border-radius: 15px; border: 1px solid rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
 }
 .dock-btn {
     background: transparent; border: none; color: #888;
-    font-size: 0.8rem; font-weight: 500; padding: 5px 15px; transition: 0.2s;
+    font-size: 0.75rem; font-weight: 500; padding: 5px 12px; transition: 0.2s;
+    cursor: none;
 }
 .dock-btn:hover { color: #fff; }
+.dock-divider { width: 1px; height: 12px; background: rgba(255,255,255,0.1); }
 
-/* Browser Full Screen Fix */
+/* Browser Fix */
 #frame-container { position: fixed; inset: 0; width: 100%; height: 100%; display: flex; flex-direction: column; z-index: 500; background: #000; }
-.browser-nav {
-    width: 100%; display: flex; align-items: center; gap: 20px;
-    padding: 10px 25px; background: #0a0a0a; border-bottom: 1px solid #1a1a1a; box-sizing: border-box;
-}
-.nav-group button { background: #1a1a1a; border: none; color: #fff; padding: 8px 15px; border-radius: 6px; }
-.omni-wrap { flex: 1; }
-#omni-bar { width: 100%; background: #000; border: 1px solid #222; color: #fff; padding: 10px; border-radius: 6px; }
-
+.browser-nav { padding: 10px 25px; background: #0a0a0a; border-bottom: 1px solid #1a1a1a; display: flex; align-items: center; gap: 15px; }
 .iframe-wrapper { flex: 1; width: 100%; height: 100%; position: relative; }
-iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; background: #fff; }
+iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; background: #fff; }
 
 .hidden { display: none !important; }
