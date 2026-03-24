@@ -5,7 +5,7 @@ const frameContainer = document.getElementById('frame-container');
 const iframe = document.getElementById('content-frame');
 const clockEl = document.getElementById('live-clock');
 
-// 1. Re-Engineered Stars (Guaranteed Visibility)
+// 1. Stars Logic
 const canvas = document.getElementById('star-canvas');
 const ctx = canvas.getContext('2d');
 let stars = [];
@@ -18,14 +18,14 @@ function resizeCanvas() {
 
 function initStars() {
     stars = [];
-    const count = Math.floor((canvas.width * canvas.height) / 4000);
+    const count = Math.floor((canvas.width * canvas.height) / 3000);
     for (let i = 0; i < count; i++) {
         stars.push({
             x: Math.random() * canvas.width,
             y: Math.random() * canvas.height,
-            size: Math.random() * 1.5 + 0.5,
+            size: Math.random() * 2 + 0.5,
             opacity: Math.random(),
-            speed: Math.random() * 0.01 + 0.005
+            speed: Math.random() * 0.015 + 0.005
         });
     }
 }
@@ -47,67 +47,67 @@ window.addEventListener('resize', resizeCanvas);
 resizeCanvas();
 animateStars();
 
-// 2. Cinematic Fade-In Sequence
+// 2. Cinematic Fade-In Sequence (FIXED)
 window.addEventListener('load', () => {
     setTimeout(() => {
-        // Fade out loader
         loader.style.opacity = '0';
         
         setTimeout(() => {
             loader.style.display = 'none';
             
-            // Smoothly reveal UI elements one by one
-            mainHeader.classList.remove('hidden-element');
+            // Reveal header first
             mainHeader.classList.add('visible-element');
             
+            // Delay main UI slightly for "layered" effect
             setTimeout(() => {
-                mainUI.classList.remove('hidden-element');
                 mainUI.classList.add('visible-element');
-            }, 300);
-        }, 1000);
+            }, 400);
+        }, 800);
     }, 2000);
 });
 
-// 3. Navigation Functions
+// 3. Navigation
 function loadUrl(url) {
     if (!url) return;
     if (!url.startsWith('http')) url = 'https://' + url;
     
-    iframe.src = 'about:blank';
+    // Switch to Black screen loader
     loader.style.display = 'flex';
     loader.style.opacity = '1';
-
-    setTimeout(() => { iframe.src = url; }, 100);
+    
+    setTimeout(() => { 
+        iframe.src = url; 
+    }, 100);
 
     iframe.onload = () => {
         if (iframe.src === 'about:blank') return;
         loader.style.opacity = '0';
         setTimeout(() => {
             loader.style.display = 'none';
-            mainUI.classList.add('hidden-element');
-            mainHeader.classList.add('hidden-element');
-            frameContainer.classList.remove('hidden-element');
-            frameContainer.classList.add('visible-element');
-        }, 800);
+            mainUI.classList.remove('visible-element');
+            mainHeader.classList.remove('visible-element');
+            
+            frameContainer.style.display = 'flex';
+            setTimeout(() => {
+                frameContainer.classList.add('visible-element');
+            }, 50);
+        }, 600);
     };
 }
 
 document.getElementById('nav-home').onclick = () => {
-    iframe.src = 'about:blank';
     frameContainer.classList.remove('visible-element');
-    frameContainer.classList.add('hidden-element');
-    
     setTimeout(() => {
-        mainUI.classList.remove('hidden-element');
-        mainUI.classList.add('visible-element');
-        mainHeader.classList.remove('hidden-element');
+        frameContainer.style.display = 'none';
+        iframe.src = 'about:blank';
         mainHeader.classList.add('visible-element');
-    }, 500);
+        mainUI.classList.add('visible-element');
+    }, 600);
 };
 
 document.getElementById('nav-refresh').onclick = () => { iframe.src = iframe.src; };
 
-// Clock & Input Handlers
+// Clock & Handlers
 function updateClock() {
     const now = new Date();
     clockEl.innerText = now.toLocaleTimeString('en-US', { hour12: true });
@@ -117,11 +117,9 @@ updateClock();
 
 document.getElementById('main-go-btn').onclick = () => loadUrl(document.getElementById('main-url-input').value);
 document.getElementById('main-url-input').onkeydown = (e) => { if(e.key === 'Enter') loadUrl(e.target.value); };
-document.getElementById('omni-bar').onkeydown = (e) => { if(e.key === 'Enter') loadUrl(e.target.value); };
 document.getElementById('shortcut-music').onclick = () => loadUrl('https://monochrome.tf');
 document.getElementById('shortcut-movies').onclick = () => loadUrl('https://vexo.tv');
 
-// Cursor
 document.addEventListener('mousemove', (e) => {
     const cursor = document.getElementById('custom-cursor');
     cursor.style.left = e.clientX + 'px';
@@ -129,5 +127,5 @@ document.addEventListener('mousemove', (e) => {
 });
 
 document.getElementById('about-trigger').onclick = () => {
-    alert("AXIOM WEB\nCreated by: Dunko\nVersion: 1.0.6\nExperience the void.");
+    alert("AXIOM WEB\nCreated by: Dunko\nVersion: 1.0.7\nExperience the void.");
 };
